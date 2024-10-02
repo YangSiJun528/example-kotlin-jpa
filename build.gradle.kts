@@ -9,11 +9,11 @@ plugins {
 group = "dev.joon"
 version = "0.0.1-SNAPSHOT"
 
-//allOpen {
-//    annotation("jakarta.persistence.Entity")
-//    annotation("jakarta.persistence.Embeddable")
-//    annotation("jakarta.persistence.MappedSuperclass")
-//}
+allOpen {
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.Embeddable")
+    annotation("jakarta.persistence.MappedSuperclass")
+}
 
 java {
     toolchain {
