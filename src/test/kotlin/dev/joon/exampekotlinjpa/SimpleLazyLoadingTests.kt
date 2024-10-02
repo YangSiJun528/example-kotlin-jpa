@@ -2,7 +2,6 @@ package dev.joon.exampekotlinjpa
 
 import dev.joon.simplecrudapi.TestcontainersConfiguration
 import jakarta.persistence.EntityManager
-import org.hibernate.Hibernate
 import org.junit.jupiter.api.Assertions.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
@@ -40,16 +39,17 @@ class SimpleLazyLoadingTests {
         val fetchedSimpleRelation = simpleRelationRepository.findById(simpleRelation.id).orElse(null)
 
         assertNotNull(fetchedSimpleRelation)
-        assertFalse(isContinentLoaded(fetchedSimpleRelation))
+
+        assertFalse(isLoaded(fetchedSimpleRelation))
 
         println("before call fetchedSimpleRelation.simple.name")
         val simpleName = fetchedSimpleRelation.simple.name
         println("after call fetchedSimpleRelation.simple.name")
 
-        assertTrue(isContinentLoaded(fetchedSimpleRelation))
+        assertTrue(isLoaded(fetchedSimpleRelation))
     }
 
-    private fun isContinentLoaded(simpleRelation: SimpleRelation): Boolean {
+    private fun isLoaded(simpleRelation: SimpleRelation): Boolean {
         return entityManager.entityManagerFactory.persistenceUnitUtil.isLoaded(simpleRelation, "simple")
     }
 }
