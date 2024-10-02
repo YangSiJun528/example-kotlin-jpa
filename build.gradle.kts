@@ -9,6 +9,12 @@ plugins {
 group = "dev.joon"
 version = "0.0.1-SNAPSHOT"
 
+//allOpen {
+//    annotation("jakarta.persistence.Entity")
+//    annotation("jakarta.persistence.Embeddable")
+//    annotation("jakarta.persistence.MappedSuperclass")
+//}
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
@@ -22,9 +28,12 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-testcontainers")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testImplementation("org.testcontainers:junit-jupiter")
+    testImplementation("org.testcontainers:postgresql")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
